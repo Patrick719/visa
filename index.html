@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa & Career Pathways | Schengen & International Jobs</title>
+    
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0056b3; /* Professional Blue */
+            --secondary-color: #00a8cc; /* Teal accent */
+            --dark-text: #333333;
+            --light-text: #f4f4f4;
+            --bg-light: #ffffff;
+            --bg-gray: #f9f9f9;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --spacing: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #003d80;
+            border-color: #003d80;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        section {
+            padding: var(--spacing) 0;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark-text);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .hero .btn-primary {
+            background-color: white;
+            color: var(--primary-color);
+            border-color: white;
+        }
+        
+        .hero .btn-primary:hover {
+            background-color: #f0f0f0;
+        }
+
+        .hero .btn-outline {
+            color: white;
+            border-color: white;
+        }
+        
+        .hero .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* --- SERVICES SECTION (Grid) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary-color);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .service-card ul {
+            margin: 20px 0;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .service-card ul li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* --- VISA SECTION SPECIFIC --- */
+        #visa {
+            background-color: var(--bg-gray);
+        }
+
+        /* --- CAREER SECTION SPECIFIC --- */
+        #career {
+            background-color: var(--bg-light);
+        }
+
+        .icon-box {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- HOW IT WORKS --- */
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: #333;
+            color: white;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .contact-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #444;
+            color: white;
+            font-family: inherit;
+        }
+
+        /* --- FOOTER & SOCIAL ICONS --- */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 50%;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplified for demo */
+            .steps-container { flex-direction: column; }
+            .contact-wrapper { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Visa & Career Path</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#visa">Visa Services</a></li>
+                    <li><a href="#career">Career & Jobs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Your Bridge to Europe & Beyond</h1>
+                <p>Expert guidance for Schengen Visa applications, EU CV creation, and securing international jobs in Africa & worldwide.</p>
+                <div class="hero-buttons">
+                    <a href="#visa" class="btn btn-primary">Visa Assistance</a>
+                    <a href="#career" class="btn btn-outline">Career Support</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visa Services Section -->
+        <section id="visa">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Schengen Visa Services</h2>
+                    <p>Navigate the complex visa application process with our expert consultation and document preparation.</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Card 1 -->
+                    <div class="service-card">
+                        <span class="icon-box">🇪🇺</span>
+                        <h3>Visa Consultation</h3>
+                        <p>One-on-one advice to determine your eligibility and the best visa type for your travel needs.</p>
+                        <ul>
+                            <li>Eligibility Assessment</li>
+                            <li>Document Checklist</li>
+                            <li>Q&A Session</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Book Consultation</a>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="service-card">
+                        <span class="icon-box">📝</span>
+                        <h3>Application Review</h3>
+                        <p>We review your filled forms and supporting documents to ensure they meet embassy standards.</p>
+                        <ul>
+                            <li>Form Error Checking</li>
+                            <li>Cover Letter Drafting</li>
+                            <li>Flight & Hotel Itinerary Tips</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Get Review</a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="service-card">
+                        <span class="icon-box">🗣️</span>
+                        <h3>Interview Prep</h3>
+                        <p>Mock interviews and tips to help you answer the consulate officer's questions confidently.</p>
+                        <ul>
+                            <li>Mock Sessions</li>
+                            <li>Common Questions</li>
+                            <li>Confidence Building</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Prep Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career & Jobs Section -->
+        <section id="career">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Career Guidance & Jobs</h2>
+                    <p>Optimize your profile for the European market and find credible international opportunities.</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- CV Card -->
+                    <div class="service-card">
+                        <span class="icon-box">📄</span>
+                        <h3>EU CV & Cover Letter</h3>
+                        <p>Transform your resume into the standard EU format (Europass) or a modern professional style.</p>
+                        <ul>
+                            <li>ATS-Friendly Formatting</li>
+                            <li>Keyword Optimization</li>
+                            <li>Persuasive Cover Letters</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Order CV</a>
+                    </div>
+
+                    <!-- Job Portals Card -->
+                    <div class="service-card">
+                        <span class="icon-box">🌍</span>
+                        <h3>Job Portal Recommendations</h3>
+                        <p>Stop wasting time on scams. Get a curated list of credible portals for Europe & Africa.</p>
+                        <ul>
+                            <li>Verified Websites</li>
+                            <li>Industry Specific Lists</li>
+                            <li>Remote Job Boards</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Get List</a>
+                    </div>
+
+                    <!-- International Advice Card -->
+                    <div class="service-card">
+                        <span class="icon-box">✈️</span>
+                        <h3>International Job Advice</h3>
+                        <p>Strategy sessions on how to secure roles abroad from Africa or within your current region.</p>
+                        <ul>
+                            <li>Career Roadmap</li>
+                            <li>Networking Strategies</li>
+                            <li>Credential Evaluation</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Get Advice</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="process" style="background-color: var(--bg-gray);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>How It Works</h2>
+                </div>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Choose Service</h3>
+                        <p>Select whether you need Visa help or Career support.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Book Slot</h3>
+                        <p>Schedule a consultation or submit your documents via our form.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Get Results</h3>
+                        <p>Receive your checklist, optimized CV, or visa strategy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2 style="color: white;">Get In Touch</h2>
+                    <p style="color: #ccc;">Ready to start your journey? Fill out the form below.</p>
+                </div>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@visacareerpath.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+256 776636323</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Fri, 9am - 5pm</span>
+                        </div>
+                        
+                        <!-- Direct Social Links in Contact Section -->
+                        <div style="margin-top: 20px;">
+                            <p style="color: #ccc; margin-bottom: 10px;">Follow Us:</p>
+                            <div class="social-icons" style="justify-content: flex-start; margin: 0;">
+                                <a href="#" style="text-decoration: none;"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" style="text-decoration: none;"><i class="fab fa-twitter"></i></a>
+                                <a href="#" style="text-decoration: none;"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" style="text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">
+                            Disclaimer: We are an independent consultancy. We do not guarantee visa issuance or job placement, but we maximize your chances with professional guidance.
+                        </p>
+                    </div>
+                    <div class="contact-form">
+                        <form onsubmit="event.preventDefault(); alert('Thank you! This is a demo form.');">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Service Interested In</label>
+                                <select>
+                                    <option>Schengen Visa Consultation</option>
+                                    <option>CV & Cover Letter Writing</option>
+                                    <option>Job Portal Recommendations</option>
+                                    <option>International Career Advice</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea rows="4" placeholder="Tell us about your situation..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <!-- Social Icons in Footer -->
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+            <p>&copy; Visa & Career Pathways. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
