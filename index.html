@@ -349,6 +349,21 @@
             color: white;
         }
 
+        /* --- SUCCESS CARD STYLES --- */
+        #booking-success {
+            background-color: #444;
+            border: 1px solid var(--secondary-color);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
@@ -555,33 +570,21 @@
                             Disclaimer: We are an independent consultancy. We do not guarantee visa issuance or job placement, but we maximize your chances with professional guidance.
                         </p>
                     </div>
+                    
                     <div class="contact-form">
-                        <!-- 
-                             SETUP INSTRUCTIONS:
-                             1. Paste your Google Form Action URL in the 'action' attribute below.
-                             2. Update the 'name' attributes for inputs to match your Google Form entry IDs (e.g., entry.123456).
-                        -->
-                        <form 
-                            name="submit-to-google-sheet" 
-                            action="ACTION_URL_HERE" 
-                            method="POST" 
-                            target="hidden_iframe"
-                            onsubmit="setTimeout(function(){window.location.reload();}, 3000);"
-                        >
+                        <!-- THE FORM -->
+                        <form id="bookingForm" name="submit-to-google-sheet" onsubmit="handleFormSubmit(event)">
                             <div class="form-group">
                                 <label>Name</label>
-                                <!-- Change 'name' to entry.123456 -->
-                                <input type="text" name="entry.NAME_ID" placeholder="Your Name" required>
+                                <input id="nameInput" type="text" name="entry.NAME_ID" placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <!-- Change 'name' to entry.789012 -->
-                                <input type="email" name="entry.EMAIL_ID" placeholder="Your Email" required>
+                                <input id="emailInput" type="email" name="entry.EMAIL_ID" placeholder="Your Email" required>
                             </div>
                             <div class="form-group">
                                 <label>Service Interested In</label>
-                                <!-- Change 'name' to entry.ABCDEF -->
-                                <select name="entry.SERVICE_ID">
+                                <select id="serviceInput" name="entry.SERVICE_ID">
                                     <option>Schengen Visa Consultation</option>                                 
                                     <option>CV & Cover Letter Writing</option>
                                     <option>Job Portal Recommendations</option>
@@ -590,12 +593,26 @@
                               </div>
                             <div class="form-group">
                                 <label>Message</label>
-                                <!-- Change 'name' to entry.GHIJKL -->
-                                <textarea rows="4" name="entry.MESSAGE_ID" placeholder="Tell us about your situation..."></textarea>
+                                <textarea id="messageInput" rows="4" name="entry.MESSAGE_ID" placeholder="Tell us about your situation..."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
+                            <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
                         </form>
-                        <iframe name="hidden_iframe" style="display:none;" onsubmit="onSubmitted()"></iframe>
+
+                        <!-- SUCCESS CARD (Hidden by default) -->
+                        <div id="booking-success" style="display: none;">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 15px;"></i>
+                            <h3 style="color: white; margin-bottom: 10px;">Booking Received!</h3>
+                            <p style="color: #ccc;">Thank you, <strong id="display-name" style="color: white;"></strong>.</p>
+                            <p style="color: #ccc;">We have received your request for:</p>
+                            <h4 id="display-service" style="color: var(--secondary-color); margin: 10px 0;"></h4>
+                            
+                            <div style="background: #333; padding: 15px; border-radius: 5px; margin: 20px 0; text-align: left;">
+                                <small style="color: #888;">Your Message:</small>
+                                <p id="display-message" style="color: #ddd; font-style: italic;"></p>
+                            </div>
+
+                            <button onclick="location.reload()" class="btn btn-outline" style="border-color: #666; color: #ccc;">Send Another Request</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -618,20 +635,47 @@
         </div>
     </footer>
 
-    <!-- Script to handle form submission (Optional AJAX Enhancement) -->
-    <!-- 
+    <!-- JavaScript to handle Data Display and Submission -->
     <script>
-        const scriptURL = 'ACTION_URL_HERE'
-        const form = document.forms['submit-to-google-sheet']
+        // 1. PASTE YOUR GOOGLE FORM ACTION URL HERE
+        const scriptURL = 'PASTE_YOUR_GOOGLE_FORM_ACTION_URL_HERE'; 
+        const form = document.forms['submit-to-google-sheet'];
 
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => alert("Success! Thank you for booking."))
-                .catch(error => console.error('Error!', error.message))
-        })
-    </script> 
-    -->
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Stop page from reloading immediately
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerText;
+            
+            // 2. Retrieve data from the UI (Inputs)
+            const name = document.getElementById('nameInput').value;
+            const service = document.getElementById('serviceInput').value;
+            const message = document.getElementById('messageInput').value;
+
+            // 3. Show "Sending..." state
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            // 4. Submit data to Google Forms in background
+            fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+                .then(response => {
+                    // 5. On Success: Update UI with retrieved data
+                    document.getElementById('display-name').innerText = name;
+                    document.getElementById('display-service').innerText = service;
+                    document.getElementById('display-message').innerText = message;
+
+                    // Hide Form, Show Success Card
+                    document.getElementById('bookingForm').style.display = 'none';
+                    document.getElementById('booking-success').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('There was an error sending your message. Please try again.');
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                });
+        }
+    </script>
 
 </body>
 </html>
