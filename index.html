@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAM SOLUTIONS| Schengen & International Jobs</title>   
+    <title>RAM SOLUTIONS| Schengen & International Jobs</title>
+   
     <!-- Font Awesome for Social Icons 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
@@ -33,7 +35,8 @@
             font-family: var(--font-main);
             color: var(--dark-text);
             line-height: 1.6;
-        }
+        }
+
         a {
             text-decoration: none;
             color: inherit;
@@ -41,28 +44,33 @@
 
         ul {
             list-style: none;
-        }
+        }
+
         /* --- LAYOUT UTILITIES --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
+        }
+
         .section-title {
             text-align: center;
             margin-bottom: 50px;
-        }
+        }
+
         .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 15px;
-        }
+        }
+
         .section-title p {
             font-size: 1.1rem;
             color: #666;
             max-width: 600px;
             margin: 0 auto;
-        }
+        }
+
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -70,28 +78,34 @@
             font-weight: 600;
             transition: background 0.3s;
             cursor: pointer;
-        }
+        }
+
         .btn-primary {
             background-color: var(--primary-color);
             color: white;
             border: 2px solid var(--primary-color);
-        }
+        }
+
         .btn-primary:hover {
             background-color: #003d80;
             border-color: #003d80;
-        }
+        }
+
         .btn-outline {
             background-color: transparent;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
-        }
+        }
+
         .btn-outline:hover {
             background-color: var(--primary-color);
             color: white;
-        }
+        }
+
         section {
             padding: var(--spacing) 0;
-        }
+        }
+
         /* --- HEADER & NAVIGATION --- */
         header {
             background-color: white;
@@ -100,66 +114,79 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-        }
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 70px;
-        }
+        }
+
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--primary-color);
-        }
+        }
+
         .nav-links {
             display: flex;
             gap: 30px;
-       }
+       }
+
         .nav-links a {
             font-weight: 500;
             color: var(--dark-text);
             transition: color 0.3s;
-        }
+        }
+
         .nav-links a:hover {
             color: var(--primary-color);
-        }
+        }
+
         /* --- HERO SECTION --- */
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 150px 0 100px;
             text-align: center;
-        }
+        }
+
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-        }
+        }
+
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 40px;
             opacity: 0.9;
-        }
+        }
+
         .hero-buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
-        }
+        }
+
         .hero .btn-primary {
             background-color: white;
             color: var(--primary-color);
             border-color: white;
-        }   
+        }
+   
       .hero .btn-primary:hover {
             background-color: #f0f0f0;
         }
         .hero .btn-outline {
             color: white;
             border-color: white;
-        }      
+        }
+      
         .hero .btn-outline:hover {
             background-color: rgba(255,255,255,0.1);
-        }
+        }
+
         /* --- SERVICES SECTION (Grid) --- */
         .services-grid {
             display: grid;
@@ -176,11 +203,13 @@
         }
         .service-card:hover {
             transform: translateY(-5px);
-        }
+        }
+
         .service-card h3 {
             margin-bottom: 15px;
             font-size: 1.4rem;
-        }
+        }
+
         .service-card ul {
             margin: 20px 0;
             padding-left: 20px;
@@ -189,20 +218,24 @@
         .service-card ul li {
             margin-bottom: 10px;
             color: #555;
-        }
+        }
+
         /* --- VISA SECTION SPECIFIC --- */
         #visa {
             background-color: var(--bg-gray);
-        }
+        }
+
         /* --- CAREER SECTION SPECIFIC --- */
         #career {
             background-color: var(--bg-light);
-        }
+        }
+
         .icon-box {
             font-size: 2rem;
             margin-bottom: 15px;
             display: block;
-        }
+        }
+
         /* --- HOW IT WORKS --- */
         .steps-container {
             display: flex;
@@ -210,12 +243,14 @@
             text-align: center;
             flex-wrap: wrap;
             gap: 20px;
-        }
+        }
+
         .step {
             flex: 1;
             min-width: 250px;
             position: relative;
-        }
+        }
+
         .step-number {
             width: 50px;
             height: 50px;
@@ -227,39 +262,48 @@
             justify-content: center;
             font-size: 1.5rem;
             font-weight: bold;
-            margin: 0 auto 20px;        }
+            margin: 0 auto 20px;
+        }
+
        /* --- CONTACT SECTION --- */
         #contact {
             background-color: #333;
             color: white;
-        }
+        }
+
         .contact-wrapper {
             display: flex;
             flex-wrap: wrap;
             gap: 50px;
-        }
+        }
+
         .contact-info, .contact-form {
             flex: 1;
             min-width: 300px;
-        }
+        }
+
         .contact-info h3 {
             margin-bottom: 20px;
             color: var(--secondary-color);
-        }
+        }
+
         .contact-item {
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
-        }
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
-      .form-group label {
+
+      .form-group label {
             display: block;
             margin-bottom: 5px;
             color: #ccc;
-        }
+        }
+
         .form-group input, 
         .form-group select, 
         .form-group textarea {
@@ -270,7 +314,8 @@
             background-color: #444;
             color: white;
             font-family: inherit;
-        }
+        }
+
         /* --- FOOTER & SOCIAL ICONS --- */
         footer {
             background-color: #222;
@@ -278,11 +323,13 @@
             text-align: center;
             padding: 40px 0;
             font-size: 0.9rem;
-        }
+        }
+
         .social-icons {
             margin-bottom: 20px;
         }
-        .social-icons a {
+
+        .social-icons a {
             display: inline-flex;
             justify-content: center;
             align-items: center;
@@ -294,13 +341,15 @@
             margin: 0 8px;
             transition: all 0.3s ease;
             font-size: 1.1rem;
-        }
+        }
+
         .social-icons a:hover {
             background-color: var(--secondary-color);
             transform: translateY(-3px);
             color: white;
         }
-        /* --- RESPONSIVE --- */
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; } /* Simplified for demo */
@@ -309,7 +358,8 @@
         }
     </style>
 </head>
-<body>
+<body>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -337,26 +387,30 @@
                     <a href="#career" class="btn btn-outline">Career Support</a>
                 </div>
             </div>
-        </section>
+        </section>
+
         <!-- Visa Services Section -->
         <section id="visa">
             <div class="container">
                 <div class="section-title">
                     <h2>Schengen Visa Services</h2>
                     <p>Navigate the complex visa application process with our expert consultation and document preparation.</p>
-                </div>
+                </div>
+
                 <div class="services-grid">
                     <!-- Card 1 -->
                     <div class="service-card">
                         <span class="icon-box">🇪🇺</span>
                         <h3>Visa Consultation</h3>
                         <p>One-on-one advice to determine your eligibility and the best visa type for your travel needs.</p>
-                        <ul>                           <li>Eligibility Assessment</li>
+                        <ul>
+                           <li>Eligibility Assessment</li>
                             <li>Document Checklist</li>
                             <li>Q&A Session</li>
                         </ul>
                         <a href="#contact" class="btn btn-outline">Book Consultation</a>
-                    </div>
+                    </div>
+
                     <!-- Card 2 -->
                     <div class="service-card">
                         <span class="icon-box">📝</span>
@@ -368,7 +422,8 @@
                             <li>Flight & Hotel Itinerary Tips</li>
                         </ul>
                         <a href="#contact" class="btn btn-outline">Get Review</a>
-                    </div>
+                    </div>
+
                     <!-- Card 3 -->
                     <div class="service-card">
                         <span class="icon-box">🗣️</span>
@@ -399,7 +454,8 @@
                         <span class="icon-box">📄</span>
                         <h3>EU CV & Cover Letter</h3>
                         <p>Transform your resume into the standard EU format (Europass) or a modern professional style.</p>
-                        <ul>                           <li>ATS-Friendly Formatting</li>
+                        <ul>
+                           <li>ATS-Friendly Formatting</li>
                             <li>Keyword Optimization</li>
                             <li>Persuasive Cover Letters</li>
                         </ul>
@@ -418,7 +474,8 @@
                         </ul>
                         <a href="#contact" class="btn btn-outline">Get List</a>
                     </div>
-                   <!-- International Advice Card -->
+
+                   <!-- International Advice Card -->
                     <div class="service-card">
                         <span class="icon-box">✈️</span>
                         <h3>International Job Advice</h3>
@@ -458,7 +515,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact">
             <div class="container">
@@ -491,7 +549,8 @@
                                 <a href="#" style="text-decoration: none;"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#" style="text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
                             </div>
-                        </div>
+                        </div>
+
                        <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">
                             Disclaimer: We are an independent consultancy. We do not guarantee visa issuance or job placement, but we maximize your chances with professional guidance.
                         </p>
@@ -508,8 +567,14 @@
                             </div>
                             <div class="form-group">
                                 <label>Service Interested In</label>
-                                <select>                                    <option>Schengen Visa Consultation</option>                                 <option>CV & Cover Letter Writing</option>                                    <option>Job Portal Recommendations</option>                                   <option>International Career Advice</option>                                </select>                              </div>
-                            <div class="form-group">                                <label>Message</label>
+                                <select>
+                                    <option>Schengen Visa Consultation</option>                                 <option>CV & Cover Letter Writing</option>
+                                    <option>Job Portal Recommendations</option>
+                                   <option>International Career Advice</option>
+                                </select>
+                              </div>
+                            <div class="form-group">
+                                <label>Message</label>
                                 <textarea rows="4" placeholder="Tell us about your situation..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
@@ -518,7 +583,8 @@
                 </div>
             </div>
         </section>
-    </main>
+    </main>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -529,10 +595,12 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>          
+            </div>
+          
             <p>&copy; Ram solutionz. All rights reserved.</p>
         </div>
-    </footer>
+    </footer>
+
 </body>
-</html> -->
--->
+
+</html> 
