@@ -1,9 +1,9 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAM SOLUTIONS| Schengen & International Jobs</title>
+    <title>RAM SOLUTIONS | Schengen & International Jobs</title>
    
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -556,29 +556,46 @@
                         </p>
                     </div>
                     <div class="contact-form">
-                        <form onsubmit="event.preventDefault(); alert('Thank you! This is a demo form.');">
+                        <!-- 
+                             SETUP INSTRUCTIONS:
+                             1. Paste your Google Form Action URL in the 'action' attribute below.
+                             2. Update the 'name' attributes for inputs to match your Google Form entry IDs (e.g., entry.123456).
+                        -->
+                        <form 
+                            name="submit-to-google-sheet" 
+                            action="ACTION_URL_HERE" 
+                            method="POST" 
+                            target="hidden_iframe"
+                            onsubmit="setTimeout(function(){window.location.reload();}, 3000);"
+                        >
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" placeholder="Your Name" required>
+                                <!-- Change 'name' to entry.123456 -->
+                                <input type="text" name="entry.NAME_ID" placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" placeholder="Your Email" required>
+                                <!-- Change 'name' to entry.789012 -->
+                                <input type="email" name="entry.EMAIL_ID" placeholder="Your Email" required>
                             </div>
                             <div class="form-group">
                                 <label>Service Interested In</label>
-                                <select>
-                                    <option>Schengen Visa Consultation</option>                                 <option>CV & Cover Letter Writing</option>
+                                <!-- Change 'name' to entry.ABCDEF -->
+                                <select name="entry.SERVICE_ID">
+                                    <option>Schengen Visa Consultation</option>                                 
+                                    <option>CV & Cover Letter Writing</option>
                                     <option>Job Portal Recommendations</option>
                                    <option>International Career Advice</option>
                                 </select>
                               </div>
                             <div class="form-group">
                                 <label>Message</label>
-                                <textarea rows="4" placeholder="Tell us about your situation..."></textarea>
+                                <!-- Change 'name' to entry.GHIJKL -->
+                                <textarea rows="4" name="entry.MESSAGE_ID" placeholder="Tell us about your situation..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
                         </form>
+                        <iframe name="hidden_iframe" style="display:none;" onsubmit="onSubmitted()"></iframe>
                     </div>
                 </div>
             </div>
@@ -601,7 +618,20 @@
         </div>
     </footer>
 
+    <!-- Script to handle form submission (Optional AJAX Enhancement) -->
+    <!-- 
+    <script>
+        const scriptURL = 'ACTION_URL_HERE'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert("Success! Thank you for booking."))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script> 
+    -->
+
 </body>
-
-</html> 
-
+</html>
