@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAM SOLUTIONS | Schengen & International Jobs</title>
+    <title>RAM SOLUTIONS | Admin Dashboard</title>
    
-    <!-- Font Awesome for Social Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-color: #0056b3; /* Professional Blue */
-            --secondary-color: #00a8cc; /* Teal accent */
+            --primary-color: #0056b3;
+            --secondary-color: #00a8cc;
             --dark-text: #333333;
             --light-text: #f4f4f4;
             --bg-light: #ffffff;
@@ -21,353 +21,149 @@
             --spacing: 80px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-main);
-            color: var(--dark-text);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); color: var(--dark-text); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
         /* --- LAYOUT UTILITIES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+        .section-title p { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; }
 
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background 0.3s;
-            cursor: pointer;
+            display: inline-block; padding: 12px 30px; border-radius: 5px;
+            font-weight: 600; transition: background 0.3s; cursor: pointer;
+        }
+        .btn-primary { background-color: var(--primary-color); color: white; border: 2px solid var(--primary-color); }
+        .btn-primary:hover { background-color: #003d80; border-color: #003d80; }
+        .btn-outline { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .btn-outline:hover { background-color: var(--primary-color); color: white; }
+        section { padding: var(--spacing) 0; }
+
+        /* --- HEADER --- */
+        header { background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; color: var(--dark-text); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- HERO --- */
+        .hero { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 150px 0 100px; text-align: center; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; }
+        .hero-buttons { display: flex; justify-content: center; gap: 20px; }
+        .hero .btn-primary { background-color: white; color: var(--primary-color); border-color: white; }
+        .hero .btn-primary:hover { background-color: #f0f0f0; }
+        .hero .btn-outline { color: white; border-color: white; }
+        .hero .btn-outline:hover { background-color: rgba(255,255,255,0.1); }
+
+        /* --- SERVICES --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--secondary-color); transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-5px); }
+        .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .service-card ul { margin: 20px 0; padding-left: 20px; list-style: disc; }
+        .service-card ul li { margin-bottom: 10px; color: #555; }
+
+        /* --- CONTACT --- */
+        #contact { background-color: #333; color: white; }
+        .contact-wrapper { display: flex; flex-wrap: wrap; gap: 50px; }
+        .contact-info, .contact-form { flex: 1; min-width: 300px; }
+        .contact-info h3 { margin-bottom: 20px; color: var(--secondary-color); }
+        .contact-item { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #ccc; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #555;
+            background-color: #444; color: white; font-family: inherit;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-            border: 2px solid var(--primary-color);
-        }
+        /* --- FOOTER --- */
+        footer { background-color: #222; color: #aaa; text-align: center; padding: 40px 0; font-size: 0.9rem; }
+        .social-icons { margin-bottom: 20px; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 40px; height: 40px; background-color: #333; color: #fff; border-radius: 50%; margin: 0 8px; transition: all 0.3s ease; font-size: 1.1rem; }
+        .social-icons a:hover { background-color: var(--secondary-color); transform: translateY(-3px); color: white; }
 
-        .btn-primary:hover {
-            background-color: #003d80;
-            border-color: #003d80;
+        /* --- ADMIN DASHBOARD STYLES --- */
+        #admin-dashboard {
+            background-color: #f4f6f8;
+            min-height: 100vh;
+            padding: 100px 20px 40px;
+            display: none; /* Hidden by default */
         }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        section {
-            padding: var(--spacing) 0;
-        }
-
-        /* --- HEADER & NAVIGATION --- */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
+        
+        .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-       }
-
-        .nav-links a {
-            font-weight: 500;
-            color: var(--dark-text);
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 150px 0 100px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .hero .btn-primary {
-            background-color: white;
-            color: var(--primary-color);
-            border-color: white;
-        }
-   
-      .hero .btn-primary:hover {
-            background-color: #f0f0f0;
-        }
-        .hero .btn-outline {
-            color: white;
-            border-color: white;
-        }
-      
-        .hero .btn-outline:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        /* --- SERVICES SECTION (Grid) --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .service-card {
+            margin-bottom: 30px;
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--secondary-color);
-            transition: transform 0.3s;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .service-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow-x: auto;
         }
 
-        .service-card ul {
-            margin: 20px 0;
-            padding-left: 20px;
-            list-style: disc;
-        }
-        .service-card ul li {
-            margin-bottom: 10px;
-            color: #555;
-        }
-
-        /* --- VISA SECTION SPECIFIC --- */
-        #visa {
-            background-color: var(--bg-gray);
-        }
-
-        /* --- CAREER SECTION SPECIFIC --- */
-        #career {
-            background-color: var(--bg-light);
-        }
-
-        .icon-box {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        /* --- HOW IT WORKS --- */
-        .steps-container {
-            display: flex;
-            justify-content: space-between;
-            text-align: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .step {
-            flex: 1;
-            min-width: 250px;
-            position: relative;
-        }
-
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background-color: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
-        }
-
-       /* --- CONTACT SECTION --- */
-        #contact {
-            background-color: #333;
-            color: white;
-        }
-
-        .contact-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-        }
-
-        .contact-info, .contact-form {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-info h3 {
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-
-        .contact-item {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-      .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
+        table {
             width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #555;
-            background-color: #444;
+            border-collapse: collapse;
+            min-width: 800px; /* Ensures table is scrollable on mobile */
+        }
+
+        thead {
+            background-color: var(--primary-color);
             color: white;
-            font-family: inherit;
         }
 
-        /* --- FOOTER & SOCIAL ICONS --- */
-        footer {
-            background-color: #222;
-            color: #aaa;
-            text-align: center;
-            padding: 40px 0;
-            font-size: 0.9rem;
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
         }
 
-        .social-icons {
-            margin-bottom: 20px;
+        tr:hover { background-color: #f9f9f9; }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            background-color: #e3f2fd;
+            color: var(--primary-color);
         }
 
-        .social-icons a {
-            display: inline-flex;
+        /* --- LOGIN MODAL --- */
+        #admin-login-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
             justify-content: center;
             align-items: center;
-            width: 40px;
-            height: 40px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 50%;
-            margin: 0 8px;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
+            z-index: 2000;
         }
-
-        .social-icons a:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-            color: white;
+        .login-box {
+            background: white; padding: 40px; border-radius: 8px;
+            text-align: center; width: 90%; max-width: 400px;
         }
-
-        /* --- SUCCESS CARD STYLES --- */
-        #booking-success {
-            background-color: #444;
-            border: 1px solid var(--secondary-color);
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .login-box input {
+            width: 100%; padding: 10px; margin: 20px 0;
+            border: 1px solid #ddd; border-radius: 5px;
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplified for demo */
+            .nav-links { display: none; }
             .steps-container { flex-direction: column; }
             .contact-wrapper { flex-direction: column; }
         }
@@ -375,307 +171,265 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
+    <!-- === PUBLIC WEBSITE === -->
+    <div id="public-website">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">RAM SOLUTIONZ</div>
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#visa">Visa Services</a></li>
+                        <li><a href="#career">Career & Jobs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Book Now</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <main>
+            <section id="home" class="hero">
+                <div class="container">
+                    <h1>Your Bridge to Europe & Beyond</h1>
+                    <p>Expert guidance for Schengen Visa applications, EU CV creation, and securing international jobs.</p>
+                    <div class="hero-buttons">
+                        <a href="#visa" class="btn btn-primary">Visa Assistance</a>
+                        <a href="#career" class="btn btn-outline">Career Support</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visa Services -->
+            <section id="visa">
+                <div class="container">
+                    <div class="section-title"><h2>Schengen Visa Services</h2></div>
+                    <div class="services-grid">
+                        <div class="service-card"><span>🇪🇺</span><h3>Visa Consultation</h3><ul><li>Eligibility Assessment</li><li>Document Checklist</li><li>Q&A Session</li></ul><a href="#contact" class="btn btn-outline">Book Consultation</a></div>
+                        <div class="service-card"><span>📝</span><h3>Application Review</h3><ul><li>Form Error Checking</li><li>Cover Letter Drafting</li><li>Itinerary Tips</li></ul><a href="#contact" class="btn btn-outline">Get Review</a></div>
+                        <div class="service-card"><span>🗣️</span><h3>Interview Prep</h3><ul><li>Mock Sessions</li><li>Common Questions</li><li>Confidence Building</li></ul><a href="#contact" class="btn btn-outline">Prep Now</a></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Career Services -->
+            <section id="career">
+                <div class="container">
+                    <div class="section-title"><h2>Career Guidance</h2></div>
+                    <div class="services-grid">
+                        <div class="service-card"><span>📄</span><h3>EU CV & Cover Letter</h3><ul><li>ATS-Friendly Formatting</li><li>Keyword Optimization</li></ul><a href="#contact" class="btn btn-outline">Order CV</a></div>
+                        <div class="service-card"><span>🌍</span><h3>Job Portals</h3><ul><li>Verified Websites</li><li>Industry Specific Lists</li></ul><a href="#contact" class="btn btn-outline">Get List</a></div>
+                        <div class="service-card"><span>✈️</span><h3>International Advice</h3><ul><li>Career Roadmap</li><li>Networking Strategies</li></ul><a href="#contact" class="btn btn-outline">Get Advice</a></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Booking Form -->
+            <section id="contact">
+                <div class="container">
+                    <div class="section-title">
+                        <h2 style="color: white;">Get In Touch</h2>
+                        <p style="color: #ccc;">Ready to start your journey? Fill out the form below.</p>
+                    </div>
+                    <div class="contact-wrapper">
+                        <div class="contact-info">
+                            <h3>Contact Information</h3>
+                            <div class="contact-item"><i class="fas fa-envelope"></i><span>Ramsolution710@gmail.com</span></div>
+                            <div class="contact-item"><i class="fas fa-phone"></i><span>+256776243488</span></div>
+                            <div class="social-icons" style="justify-content: flex-start; margin-top:20px;">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <form id="bookingForm" onsubmit="submitBooking(event)">
+                                <div class="form-group"><label>Name</label><input id="name" type="text" required></div>
+                                <div class="form-group"><label>Email</label><input id="email" type="email" required></div>
+                                <div class="form-group"><label>Service</label><select id="service"><option>Visa Consultation</option><option>CV Writing</option><option>Job Advice</option></select></div>
+                                <div class="form-group"><label>Message</label><textarea id="message" rows="4"></textarea></div>
+                                <button type="submit" class="btn btn-primary" style="width:100%">Book Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; Ram solutionz. All rights reserved.</p>
+                <p style="margin-top: 10px; cursor: pointer; color: #555;" onclick="openLogin()">Admin Login</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- === ADMIN DASHBOARD === -->
+    <section id="admin-dashboard">
         <div class="container">
-            <nav>
-                <div class="logo">RAM SOLUTIONZ</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#visa">Visa Services</a></li>
-                    <li><a href="#career">Career & Jobs</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <a href="#contact" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Book Now</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h1>Your Bridge to Europe & Beyond</h1>
-                <p>Expert guidance for Schengen Visa applications, EU CV creation, and securing international jobs in Africa & worldwide.</p>
-                <div class="hero-buttons">
-                    <a href="#visa" class="btn btn-primary">Visa Assistance</a>
-                    <a href="#career" class="btn btn-outline">Career Support</a>
-                </div>
+            <div class="dashboard-header">
+                <h2>Admin Dashboard</h2>
+                <button onclick="logout()" class="btn btn-outline" style="border-color: #333; color: #333;">Logout</button>
             </div>
-        </section>
-
-        <!-- Visa Services Section -->
-        <section id="visa">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Schengen Visa Services</h2>
-                    <p>Navigate the complex visa application process with our expert consultation and document preparation.</p>
-                </div>
-
-                <div class="services-grid">
-                    <!-- Card 1 -->
-                    <div class="service-card">
-                        <span class="icon-box">🇪🇺</span>
-                        <h3>Visa Consultation</h3>
-                        <p>One-on-one advice to determine your eligibility and the best visa type for your travel needs.</p>
-                        <ul>
-                           <li>Eligibility Assessment</li>
-                            <li>Document Checklist</li>
-                            <li>Q&A Session</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Book Consultation</a>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="service-card">
-                        <span class="icon-box">📝</span>
-                        <h3>Application Review</h3>
-                        <p>We review your filled forms and supporting documents to ensure they meet embassy standards.</p>
-                        <ul>
-                            <li>Form Error Checking</li>
-                            <li>Cover Letter Drafting</li>
-                            <li>Flight & Hotel Itinerary Tips</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Get Review</a>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="service-card">
-                        <span class="icon-box">🗣️</span>
-                        <h3>Interview Prep</h3>
-                        <p>Mock interviews and tips to help you answer the consulate officer's questions confidently.</p>
-                        <ul>
-                            <li>Mock Sessions</li>
-                            <li>Common Questions</li>
-                           <li>Confidence Building</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Prep Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Career & Jobs Section -->
-        <section id="career">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Career Guidance & Jobs</h2>
-                    <p>Optimize your profile for the European market and find credible international opportunities.</p>
-                </div>
-
-                <div class="services-grid">
-                    <!-- CV Card -->
-                    <div class="service-card">
-                        <span class="icon-box">📄</span>
-                        <h3>EU CV & Cover Letter</h3>
-                        <p>Transform your resume into the standard EU format (Europass) or a modern professional style.</p>
-                        <ul>
-                           <li>ATS-Friendly Formatting</li>
-                            <li>Keyword Optimization</li>
-                            <li>Persuasive Cover Letters</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Order CV</a>
-                    </div>
-
-                    <!-- Job Portals Card -->
-                    <div class="service-card">
-                        <span class="icon-box">🌍</span>
-                        <h3>Job Portal Recommendations</h3>
-                        <p>Stop wasting time on scams. Get a curated list of credible portals for Europe & Africa.</p>
-                        <ul>
-                            <li>Verified Websites</li>
-                            <li>Industry Specific Lists</li>
-                            <li>Remote Job Boards</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Get List</a>
-                    </div>
-
-                   <!-- International Advice Card -->
-                    <div class="service-card">
-                        <span class="icon-box">✈️</span>
-                        <h3>International Job Advice</h3>
-                        <p>Strategy sessions on how to secure roles abroad from Africa or within your current region.</p>
-                        <ul>
-                            <li>Career Roadmap</li>
-                            <li>Networking Strategies</li>
-                            <li>Credential Evaluation</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Get Advice</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- How It Works -->
-        <section id="process" style="background-color: var(--bg-gray);">
-            <div class="container">
-                <div class="section-title">
-                    <h2>How It Works</h2>
-                </div>
-                <div class="steps-container">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Choose Service</h3>
-                        <p>Select whether you need Visa help or Career support.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Book Slot</h3>
-                        <p>Schedule a consultation or submit your documents via our form.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Get Results</h3>
-                        <p>Receive your checklist, optimized CV, or visa strategy.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <div class="container">
-                <div class="section-title">
-                    <h2 style="color: white;">Get In Touch</h2>
-                    <p style="color: #ccc;">Ready to start your journey? Fill out the form below.</p>
-                </div>
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <h3>Contact Information</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>Ramsolution710@gmail.com </span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+256776243488</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Mon - Fri, 9am - 5pm</span>
-                        </div>
-                        
-                        <!-- Direct Social Links in Contact Section -->
-                        <div style="margin-top: 20px;">
-                            <p style="color: #ccc; margin-bottom: 10px;">Follow Us:</p>
-                            <div class="social-icons" style="justify-content: flex-start; margin: 0;">
-                                <a href="#" style="text-decoration: none;"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" style="text-decoration: none;"><i class="fab fa-twitter"></i></a>
-                                <a href="#" style="text-decoration: none;"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" style="text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-
-                       <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">
-                            Disclaimer: We are an independent consultancy. We do not guarantee visa issuance or job placement, but we maximize your chances with professional guidance.
-                        </p>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <!-- THE FORM -->
-                        <form id="bookingForm" name="submit-to-google-sheet" onsubmit="handleFormSubmit(event)">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input id="nameInput" type="text" name="entry.NAME_ID" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input id="emailInput" type="email" name="entry.EMAIL_ID" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Service Interested In</label>
-                                <select id="serviceInput" name="entry.SERVICE_ID">
-                                    <option>Schengen Visa Consultation</option>                                 
-                                    <option>CV & Cover Letter Writing</option>
-                                    <option>Job Portal Recommendations</option>
-                                   <option>International Career Advice</option>
-                                </select>
-                              </div>
-                            <div class="form-group">
-                                <label>Message</label>
-                                <textarea id="messageInput" rows="4" name="entry.MESSAGE_ID" placeholder="Tell us about your situation..."></textarea>
-                            </div>
-                            <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
-                        </form>
-
-                        <!-- SUCCESS CARD (Hidden by default) -->
-                        <div id="booking-success" style="display: none;">
-                            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 15px;"></i>
-                            <h3 style="color: white; margin-bottom: 10px;">Booking Received!</h3>
-                            <p style="color: #ccc;">Thank you, <strong id="display-name" style="color: white;"></strong>.</p>
-                            <p style="color: #ccc;">We have received your request for:</p>
-                            <h4 id="display-service" style="color: var(--secondary-color); margin: 10px 0;"></h4>
-                            
-                            <div style="background: #333; padding: 15px; border-radius: 5px; margin: 20px 0; text-align: left;">
-                                <small style="color: #888;">Your Message:</small>
-                                <p id="display-message" style="color: #ddd; font-style: italic;"></p>
-                            </div>
-
-                            <button onclick="location.reload()" class="btn btn-outline" style="border-color: #666; color: #ccc;">Send Another Request</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <!-- Social Icons in Footer -->
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          
-            <p>&copy; Ram solutionz. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript to handle Data Display and Submission -->
-    <script>
-        // 1. PASTE YOUR GOOGLE FORM ACTION URL HERE
-        const scriptURL = 'PASTE_YOUR_GOOGLE_FORM_ACTION_URL_HERE'; 
-        const form = document.forms['submit-to-google-sheet'];
-
-        function handleFormSubmit(event) {
-            event.preventDefault(); // Stop page from reloading immediately
-
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerText;
             
-            // 2. Retrieve data from the UI (Inputs)
-            const name = document.getElementById('nameInput').value;
-            const service = document.getElementById('serviceInput').value;
-            const message = document.getElementById('messageInput').value;
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Service</th>
+                            <th>Message</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="booking-table-body">
+                        <!-- Data will be loaded here by Firebase -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
-            // 3. Show "Sending..." state
-            submitBtn.innerText = "Sending...";
-            submitBtn.disabled = true;
+    <!-- === LOGIN MODAL === -->
+    <div id="admin-login-modal">
+        <div class="login-box">
+            <h3>Admin Access</h3>
+            <p>Enter password to view bookings</p>
+            <input type="password" id="adminPassword" placeholder="Password (Try: admin123)">
+            <button onclick="checkLogin()" class="btn btn-primary" style="width:100%">Login</button>
+            <button onclick="closeLogin()" style="margin-top:10px; background:none; border:none; cursor:pointer; color:#666;">Cancel</button>
+        </div>
+    </div>
 
-            // 4. Submit data to Google Forms in background
-            fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
-                .then(response => {
-                    // 5. On Success: Update UI with retrieved data
-                    document.getElementById('display-name').innerText = name;
-                    document.getElementById('display-service').innerText = service;
-                    document.getElementById('display-message').innerText = message;
+    <!-- === FIREBASE SDK (Compat version for easy HTML usage) === -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-                    // Hide Form, Show Success Card
-                    document.getElementById('bookingForm').style.display = 'none';
-                    document.getElementById('booking-success').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert('There was an error sending your message. Please try again.');
-                    submitBtn.innerText = originalText;
-                    submitBtn.disabled = false;
+    <script>
+        // ================= CONFIGURATION =================
+        // 1. Go to Firebase Console -> Project Settings -> General -> CDN
+        // 2. Paste the config object below
+        const firebaseConfig = {
+            // PASTE YOUR FIREBASE CONFIG HERE
+            // apiKey: "AIzaSy...",
+            // authDomain: "your-app.firebaseapp.com",
+            // databaseURL: "https://your-app-default-rtdb.firebaseio.com",
+            // projectId: "your-app",
+            // storageBucket: "your-app.appspot.com",
+            // messagingSenderId: "123456789",
+            // appId: "1:123456789:web:abc123"
+        };
+
+        // Initialize Firebase
+        // Check if config is filled
+        if (!firebaseConfig.apiKey) {
+            console.error("Firebase Config is missing! Please read the instructions and paste your config in the code.");
+            alert("Error: Firebase not configured. Check the Console.");
+        } else {
+            firebase.initializeApp(firebaseConfig);
+            const database = firebase.database();
+            const bookingsRef = database.ref('bookings');
+
+            // ================= LISTEN FOR BOOKINGS (REALTIME) =================
+            bookingsRef.on('value', (snapshot) => {
+                const tableBody = document.getElementById('booking-table-body');
+                tableBody.innerHTML = ''; // Clear table
+
+                const data = snapshot.val();
+                if (data) {
+                    // Convert object to array and reverse (newest first)
+                    const bookingsArray = Object.entries(data).reverse();
+
+                    bookingsArray.forEach(([key, booking]) => {
+                        const row = document.createElement('tr');
+                        const date = new Date(booking.timestamp).toLocaleString();
+                        
+                        row.innerHTML = `
+                            <td>${date}</td>
+                            <td>${booking.name}</td>
+                            <td>${booking.email}</td>
+                            <td><span class="status-badge">${booking.service}</span></td>
+                            <td>${booking.message}</td>
+                            <td>
+                                <button onclick="deleteBooking('${key}')" style="color:red; background:none; border:none; cursor:pointer;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No bookings yet.</td></tr>';
+                }
+            });
+
+            // ================= SUBMIT FORM =================
+            function submitBooking(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value;
+                const btn = document.querySelector('form button');
+
+                btn.innerText = "Sending...";
+                btn.disabled = true;
+
+                const newBookingRef = bookingsRef.push();
+                newBookingRef.set({
+                    name: name,
+                    email: email,
+                    service: service,
+                    message: message,
+                    timestamp: Date.now()
+                }).then(() => {
+                    alert("Booking Successful!");
+                    document.getElementById('bookingForm').reset();
+                    btn.innerText = "Book Now";
+                    btn.disabled = false;
+                }).catch((error) => {
+                    console.error(error);
+                    alert("Error sending booking.");
+                    btn.innerText = "Book Now";
+                    btn.disabled = false;
                 });
+            }
+
+            // ================= DELETE FUNCTION =================
+            window.deleteBooking = function(key) {
+                if(confirm('Are you sure you want to delete this record?')) {
+                    bookingsRef.child(key).remove();
+                }
+            };
+        }
+
+        // ================= UI LOGIC (Login/Logout) =================
+        function openLogin() {
+            document.getElementById('admin-login-modal').style.display = 'flex';
+        }
+        function closeLogin() {
+            document.getElementById('admin-login-modal').style.display = 'none';
+        }
+        function checkLogin() {
+            const pass = document.getElementById('adminPassword').value;
+            // Simple hardcoded password for demo. 
+            // In a real app, use Firebase Authentication.
+            if (pass === 'admin123') {
+                document.getElementById('public-website').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                document.getElementById('admin-login-modal').style.display = 'none';
+                window.scrollTo(0,0);
+            } else {
+                alert('Incorrect password');
+            }
+        }
+        function logout() {
+            document.getElementById('public-website').style.display = 'block';
+            document.getElementById('admin-dashboard').style.display = 'none';
+            window.scrollTo(0,0);
         }
     </script>
-
 </body>
 </html>
